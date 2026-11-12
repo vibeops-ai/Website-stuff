@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-ink: #0f1a2b;
+  --color-rust: #b4442f;
+  --color-clay: #c4674c;
+  --color-sand: #d9a07a;
+  --color-pine: #2e6f5e;
+  --color-mist: #f2f4f7;
+  --color-bone: #efe9dd;
+  --color-line: #e2e6ec;
+}
+
+body { @apply bg-[#fbfaf7] font-sans text-ink antialiased; }
+
+@keyframes fill { from { width: 0% } to { width: 100% } }
+@keyframes rise { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
+@keyframes mark { to { background-color: rgb(180 68 47 / 0.18); color: #b4442f } }
+
+/* Hero demo: claims appear one by one, the contradiction is marked in the source, then the verdict. */
+.demo-claim, .demo-verdict { opacity: 0; animation: rise 0.45s ease-out forwards; }
+.demo-bad { border-color: rgb(180 68 47 / 0.45); background: rgb(180 68 47 / 0.05); }
+.demo-mark { animation: mark 0.4s ease-out 1.6s forwards; }
+.panel-in { animation: rise 0.3s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-claim, .demo-verdict, .panel-in { opacity: 1; animation: none; }
+  .demo-mark { animation-duration: 0s; animation-delay: 0s; }
+}
