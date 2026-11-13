@@ -16,7 +16,7 @@ export function SectionHead({ label, title, lede, accent = false }) {
 export function Title({ text, accent }) {
   return (
     <h3 className="t-h3">
-      {text} {accent && <span className="text-muted">{accent}</span>}
+      <span className="!text-rust">{text}</span> {accent && <span className="text-muted">{accent}</span>}
     </h3>
   )
 }

@@ -41,11 +41,7 @@ export const example = {
   titleAccent: 'The evidence can tell a different story.',
   lede:
     'A fluent, well-structured response is not necessarily a supported clinical response. The gap appears when claims are checked against the source, the patient they refer to, and the workflow in which they will be used.',
-  body: [
-    'We evaluated a synthetic set of ',
-    { strong: '40 pre-declared scenarios' },
-    ' across clinical documentation, summarisation, medication instructions, triage and decision-support workflows. Each scenario was run three times. The checks focused on whether the output preserved what the source actually said, including who it referred to, what was denied, what remained uncertain and what had not yet happened.',
-  ],
+  body: [],
   stats: [
     { value: '40', label: 'Pre-declared cases', note: 'Across multiple clinical workflows', accent: true, detail: 'Every scenario and its expected behaviour was fixed before any model output was seen.' },
     { value: '120', label: 'Recorded runs', note: 'Three runs per case', detail: 'Each case was submitted three times under the same conditions to expose inconsistent answers.' },
@@ -55,7 +51,7 @@ export const example = {
   question: {
     eyebrow: 'The assessment question',
     title: 'What exactly did the AI claim, and what in the available evidence supports it?',
-    body: 'Every material claim is examined for source support, correct subject attribution, negation, timing, uncertainty, consistency and compliance with the configured workflow rules. The objective is not to judge whether an answer sounds plausible. It is to identify where the output departs from the evidence or the agreed constraints.',
+    body: 'We evaluated a synthetic set of 40 pre-declared scenarios across clinical documentation, summarisation, medication instructions, triage and decision-support workflows. Each scenario was run three times. The checks focused on whether the output preserved what the source actually said, including who it referred to, what was denied, what remained uncertain and what had not yet happened.',
   },
   chart: {
     title: 'Flagged outputs by pattern (illustrative)',
@@ -154,7 +150,7 @@ export const reproducibility = {
   repeat: {
     title: 'Which findings can a repeat test reach?',
     groups: [
-      { tag: 'Reproduces every time', count: '6 findings', ids: ['F2', 'F4', 'F5', 'F8', 'F9', 'F10'], body: 'The same behaviour appears on every recorded run in the tested examples. Re-running does not expose the defect; the output is stable, but the underlying claim may still be wrong.' },
+      { tag: 'Reproduces every time', count: '4 findings', ids: ['F2', 'F4', 'F5', 'F8', 'F9', 'F10'], body: 'The same behaviour appears on every recorded run in the tested examples. Re-running does not expose the defect; the output is stable, but the underlying claim may still be wrong.' },
       { tag: 'Intermittent', count: '6 findings', ids: ['F1', 'F3', 'F6', 'F7', 'F11', 'F12'], body: 'The issue appears on only some runs or cases. A clean demonstration can therefore coexist with a failure on an input that was not repeated.' },
     ],
     why: { lead: 'Why both slip past review.', body: 'A consistent failure can look like a normal, confident answer. An intermittent failure can disappear on the one run someone happens to inspect. Both can return valid, well-formed output.' },
@@ -250,10 +246,16 @@ export const controls = {
 
 export const footer = {
   name: 'GoodHart Labs',
-  line: 'Independent assurance for clinical AI',
-  tagline: 'AI generates. GoodHart verifies. Clinicians decide.',
-  email: 'hi@ghartlabs.com',
-  site: 'ghartlabs.com',
+  tagline: 'The frontier for clinical-AI reliability. Independent validation, custom benchmarking, and verification for the AI that touches patients.',
+  nav: [
+    { label: 'For vendors', href: 'https://ghartlabs.com/vendors' },
+    { label: 'For hospitals', href: 'https://ghartlabs.com/hospitals' },
+    { label: 'AI Hospital', href: 'https://ghartlabs.com/ai-hospital' },
+    { label: 'How it works', href: 'https://ghartlabs.com/how-it-works' },
+    { label: 'The gate', href: 'https://ghartlabs.com/the-gate' },
+    { label: 'Writing', href: 'https://ghartlabs.com/writing' },
+    { label: 'Contact us', href: 'https://ghartlabs.com/contact' },
+  ],
   disclaimer: 'All case IDs, reference findings, outputs and metrics on this page are synthetic examples created to explain the assessment method. They are not results from a customer engagement or a measured GoodHart evaluation.',
 }
 

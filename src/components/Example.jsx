@@ -13,16 +13,15 @@ export function Example() {
             <p className="t-meta">{example.meta}</p>
           </div>
 
-          <div className="grid gap-12 px-[30px] py-10 lg:grid-cols-[1.1fr_1fr]">
-            <div>
+          <div className="grid gap-0 px-[30px] py-10 lg:grid-cols-[1.1fr_1fr] lg:divide-x lg:divide-line">
+            <div className="lg:pr-12">
               <h3 className="t-h3">
-                {example.title} <span className="text-muted">{example.titleAccent}</span>
+                <span className="!text-rust">{example.title}</span> <span className="text-muted">{example.titleAccent}</span>
               </h3>
-              <p className="t-body mt-6">{example.lede}</p>
-              <p className="t-small mt-4"><Rich parts={example.body} /></p>
+              <p className="t-h4 mt-6 italic !text-muted">{example.lede}</p>
             </div>
-            <div>
-              <p className="t-tag">{example.question.eyebrow}</p>
+            <div className="lg:pl-12">
+              <p className="t-tag !text-rust">{example.question.eyebrow}</p>
               <h4 className="t-h4 mt-3">{example.question.title}</h4>
               <p className="t-small mt-3">{example.question.body}</p>
             </div>

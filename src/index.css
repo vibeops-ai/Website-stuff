@@ -11,7 +11,7 @@
   --color-muted: #5c574e;   /* paragraphs, second half of a headline */
   --color-faint: #8a8377;   /* labels, metadata */
   --color-clay: #e84a27;    /* the one orange signal per section */
-  --color-rust: #c14e2c;    /* held, failed, critical */
+  --color-rust: #e84a27;    /* held, failed, critical */
   --color-pine: #2e6f5e;    /* supported */
   --color-sand: #d9a07a;
   --color-bone: #f0eee6;    /* page */

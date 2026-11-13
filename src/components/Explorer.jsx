@@ -28,7 +28,7 @@ export function Explorer() {
     <section className="pb-[120px]">
       <div className="wrap">
         <div className="border-x border-b border-line bg-paper px-[30px]">
-          <div ref={tabsRef} role="tablist" aria-label="Full report" className="flex overflow-x-auto border-b border-line">
+          <div ref={tabsRef} role="tablist" aria-label="Full report" className="-mx-[30px] flex border-b border-line px-[30px]">
             {TABS.map((tab, i) => {
               const active = i === index
               return (
@@ -37,7 +37,7 @@ export function Explorer() {
                   role="tab"
                   aria-selected={active}
                   onClick={() => (i === index ? hold(i) : moveTo(i))}
-                  className={`relative shrink-0 px-5 py-[18px] text-[17px] transition first:pl-0 focus-visible:outline-2 focus-visible:outline-clay ${
+                  className={`relative flex-1 py-[18px] text-[15px] transition focus-visible:outline-2 focus-visible:outline-clay ${
                     active ? 'font-semibold text-ink' : 'text-faint hover:text-ink'
                   }`}
                 >
