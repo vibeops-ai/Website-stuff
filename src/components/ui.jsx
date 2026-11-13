@@ -1,21 +1,29 @@
 import { useState } from 'react'
 import { LABEL } from '../content.js'
 
-export function Eyebrow({ children, className = 'text-slate-500' }) {
-  return <p className={`text-xs font-semibold ${className}`}>{children}</p>
+// Section opening used on every section of ghartlabs.com: grey mono label, serif heading, grey lede.
+export function SectionHead({ label, title, lede, accent = false }) {
+  return (
+    <header className="max-w-[720px]">
+      <p className={`t-label ${accent ? '!text-clay' : ''}`}>{label}</p>
+      <h2 className="t-h2 mt-[26px]">{title}</h2>
+      {lede && <p className="t-lede mt-[26px]">{lede}</p>}
+    </header>
+  )
 }
 
-export function Title({ text, accent, size = 'text-3xl md:text-[2.6rem]' }) {
+// Panel heading: serif title, second half in grey (the main site's headline pattern).
+export function Title({ text, accent }) {
   return (
-    <h2 className={`font-serif leading-[1.05] tracking-[-0.01em] ${size}`}>
-      {text} {accent && <span className="text-clay">{accent}</span>}
-    </h2>
+    <h3 className="t-h3">
+      {text} {accent && <span className="text-muted">{accent}</span>}
+    </h3>
   )
 }
 
 // Renders content arrays like ['plain ', { strong: 'bold' }, ' plain'].
 export function Rich({ parts }) {
-  return parts.map((part, i) => (typeof part === 'string' ? part : <strong key={i} className="font-semibold">{part.strong}</strong>))
+  return parts.map((part, i) => (typeof part === 'string' ? part : <strong key={i} className="font-semibold text-body">{part.strong}</strong>))
 }
 
 export function Label({ id }) {
@@ -23,64 +31,60 @@ export function Label({ id }) {
 }
 
 const BADGE = {
-  Critical: 'bg-rust text-white',
-  High: 'bg-rust/10 text-rust',
-  Medium: 'bg-amber-100 text-amber-900',
-  Low: 'bg-slate-200/70 text-slate-600',
+  Critical: 'border-rust bg-rust text-white',
+  High: 'border-rust/40 bg-rust/10 text-rust',
+  Medium: 'border-sand bg-sand/20 text-[#7a4a22]',
+  Low: 'border-line bg-mist text-faint',
 }
 
 export function SeverityBadge({ level }) {
-  return <span className={`inline-block rounded px-2 py-0.5 text-[11px] font-semibold ${BADGE[level]}`}>{level}</span>
+  return <span className={`inline-block rounded-sm border px-2 py-[3px] font-mono text-[11px] font-semibold uppercase tracking-[0.08em] ${BADGE[level]}`}>{level}</span>
 }
 
 // Horizontal bars. Hovering a bar highlights it and explains it underneath.
-export function BarChart({ chart, dark = false }) {
+export function BarChart({ chart }) {
   const [active, setActive] = useState(null)
   const unit = chart.unit ?? ''
+  const shown = active === null ? null : chart.bars[active]
   return (
     <div>
-      <Eyebrow className={dark ? 'text-white/60' : 'text-slate-500'}>{chart.title}</Eyebrow>
-      <ul className="mt-3 space-y-1.5" onMouseLeave={() => setActive(null)}>
+      <p className="t-tag">{chart.title}</p>
+      <ul className="mt-4 space-y-2" onMouseLeave={() => setActive(null)}>
         {chart.bars.map((bar, i) => {
           const dim = active !== null && active !== i
           return (
-            <li key={bar.label} onMouseEnter={() => setActive(i)} className="grid cursor-default grid-cols-[10.5rem_1fr_2.75rem] items-center gap-3 text-xs">
-              <span className={`text-right transition ${dim ? 'text-slate-400' : 'text-slate-700'}`}>{bar.label}</span>
-              <span className="relative h-[18px] rounded-sm bg-slate-100">
-                <span
-                  className={`absolute inset-y-0 left-0 rounded-sm transition-all duration-200 ${bar.color} ${dim ? 'opacity-25' : ''}`}
-                  style={{ width: `${(bar.value / chart.max) * 100}%` }}
-                />
+            <li key={bar.label} onMouseEnter={() => setActive(i)} className="grid cursor-default grid-cols-[170px_1fr_44px] items-center gap-3 text-[14px]">
+              <span className={`text-right transition ${dim ? 'text-faint/60' : 'text-body'}`}>{bar.label}</span>
+              <span className="relative h-[18px] bg-rule/60">
+                <span className={`absolute inset-y-0 left-0 transition-all duration-200 ${bar.color} ${dim ? 'opacity-25' : ''}`} style={{ width: `${(bar.value / chart.max) * 100}%` }} />
               </span>
-              <span className={`tabular-nums transition ${active === i ? 'font-semibold text-ink' : 'text-slate-500'}`}>{bar.value}{unit}</span>
+              <span className={`font-mono text-[13px] tabular-nums ${active === i ? 'font-semibold text-ink' : 'text-faint'}`}>{bar.value}{unit}</span>
             </li>
           )
         })}
       </ul>
-      <p className="mt-3 min-h-9 text-xs leading-relaxed text-slate-500">
-        {active === null ? chart.note : <><strong className="text-ink">{bar(chart, active).label}.</strong> {bar(chart, active).detail}</>}
+      <p className="mt-4 min-h-[44px] text-[14px] leading-[1.5] text-muted">
+        {shown ? <><strong className="text-ink">{shown.label}.</strong> {shown.detail}</> : chart.note}
       </p>
     </div>
   )
 }
 
-const bar = (chart, i) => chart.bars[i]
-
 // One example finding: input and output always visible, the explanation on hover.
 export function MiniCase({ item }) {
   return (
-    <div className="group rounded-xl border border-line bg-white p-3.5 transition hover:border-ink/30">
+    <div className="group border border-line bg-paper p-6 transition hover:border-ink/40">
       <div className="flex items-center justify-between gap-2">
-        <p className="text-[11px] font-semibold text-rust"><Label id={item.id} /></p>
+        <p className="t-tag !text-ink"><Label id={item.id} /></p>
         <SeverityBadge level={item.severity} />
       </div>
-      <h3 className="mt-1.5 font-serif text-lg leading-snug">{item.title}</h3>
-      <div className="relative mt-2 min-h-[4.75rem]">
-        <div className="space-y-1.5 text-xs transition group-hover:opacity-0">
-          <p className="rounded bg-mist px-2.5 py-1.5 text-slate-600">{item.input}</p>
-          <p className="rounded border-l-2 border-rust bg-rust/5 px-2.5 py-1.5 font-medium text-ink">{item.output}</p>
+      <h4 className="t-h4 mt-3">{item.title}</h4>
+      <div className="relative mt-3 min-h-[96px]">
+        <div className="space-y-2 text-[13px] leading-[1.5] transition group-hover:opacity-0">
+          <p className="bg-mist px-3 py-2 font-mono text-muted">{item.input}</p>
+          <p className="border-l-2 border-rust bg-rust/5 px-3 py-2 font-mono text-ink">{item.output}</p>
         </div>
-        <p className="absolute inset-0 text-xs leading-relaxed text-slate-700 opacity-0 transition group-hover:opacity-100">{item.note}</p>
+        <p className="t-small absolute inset-0 opacity-0 transition group-hover:opacity-100">{item.note}</p>
       </div>
     </div>
   )

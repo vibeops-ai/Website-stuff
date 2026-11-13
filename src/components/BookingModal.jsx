@@ -57,20 +57,20 @@ export function BookingModal({ open, onClose }) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 p-4" onClick={close}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/50 p-4" onClick={close}>
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="booking-title"
         onClick={(e) => e.stopPropagation()}
-        className="max-h-[92dvh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl md:p-8"
+        className="max-h-[92svh] w-full max-w-2xl overflow-y-auto border border-line bg-paper p-6 shadow-2xl md:p-10"
       >
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold text-rust">Step {{ form: 1, calendar: 2, done: 3 }[step]} of 3</p>
-            <h2 id="booking-title" className="mt-1 font-serif text-2xl">{{ form: 'Tell us about you', calendar: 'Pick a time', done: 'Thank you for connecting' }[step]}</h2>
+            <p className="t-label !text-clay">Step {{ form: 1, calendar: 2, done: 3 }[step]} of 3</p>
+            <h2 id="booking-title" className="t-h3 mt-2">{{ form: 'Tell us about you', calendar: 'Pick a time', done: 'Thank you for connecting' }[step]}</h2>
           </div>
-          <button onClick={close} aria-label="Close" className="text-2xl leading-none text-slate-400 hover:text-ink">×</button>
+          <button onClick={close} aria-label="Close" className="text-2xl leading-none text-faint hover:text-ink">×</button>
         </div>
 
         {step === 'form' && (
@@ -96,7 +96,7 @@ export function BookingModal({ open, onClose }) {
               </select>
             </Field>
             <div className="flex items-end sm:col-start-2 sm:justify-end">
-              <button disabled={saving} className="w-full rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-rust disabled:opacity-60 sm:w-auto">
+              <button disabled={saving} className="w-full btn btn-primary disabled:opacity-60 sm:w-auto">
                 {saving ? 'Saving…' : 'Next'}
               </button>
             </div>
@@ -107,10 +107,10 @@ export function BookingModal({ open, onClose }) {
 
         {step === 'done' && (
           <div className="space-y-4">
-            <p className="text-sm leading-relaxed text-slate-600">
+            <p className="t-small">
               Your call is booked and a confirmation is on its way to {lead.email}. We will use the call to understand your product, agree what to evaluate and scope the review.
             </p>
-            <button onClick={close} className="rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-white hover:bg-rust">Close</button>
+            <button onClick={close} className="btn btn-primary">Close</button>
           </div>
         )}
       </div>
@@ -128,19 +128,19 @@ function Calendar({ lead, saved, onBooked }) {
 
   if (!CAL_LINK) {
     return (
-      <p className="rounded-lg bg-mist p-4 text-sm text-slate-600">
+      <p className="bg-mist p-4 t-small">
         Booking is not switched on yet.{' '}
         {saved ? `We have your details and will email ${lead.email} to set up a time.` : 'Please email hi@ghartlabs.com to book a call.'}
       </p>
     )
   }
-  return <div ref={container} className="w-full min-w-0" />
+  return <div ref={container} className="h-[640px] min-w-[300px] overflow-auto" />
 }
 
 function Field({ label, error, children }) {
   return (
     <label className="block text-sm">
-      <span className="mb-1 block font-medium">{label}</span>
+      <span className="t-tag mb-1.5 block">{label}</span>
       {children}
       {error && <span className="mt-1 block text-xs text-rust">{error}</span>}
     </label>
@@ -148,5 +148,5 @@ function Field({ label, error, children }) {
 }
 
 function inputClass(error) {
-  return `w-full rounded-lg border px-3 py-2.5 text-sm outline-none transition focus:border-ink ${error ? 'border-rust' : 'border-line'}`
+  return `w-full rounded-sm border bg-white px-3.5 py-3 text-[16px] text-ink outline-none transition focus:border-ink ${error ? 'border-rust' : 'border-line'}`
 }

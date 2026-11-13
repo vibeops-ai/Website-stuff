@@ -9,17 +9,21 @@ export const LABEL = {
 }
 
 export const hero = {
+  eyebrow: 'Independent review for clinical AI',
+  closingLabel: 'Book a review',
   title: ['Find the failures', "your benchmarks didn't catch,", 'before hospitals do.'],
   subtitle:
     'The independent, expert-led evaluation of your clinical AI through evidence-based clinical assessment, adversarial testing and workflow x population specific benchmarking',
   primaryCta: 'Fix Your Failures',
   secondaryCta: 'See A Workflow Demo',
+  demoUrl: 'https://ghartlabs.com/demo',
 }
 
 export const whatWeDo = {
   eyebrow: 'What we do',
   title: 'A comprehensive assurance partner for clinical AI.',
   tags: ['Independent testing', 'Clinical depth', 'Hospital-ready evidence'],
+  lede: 'Independent testing, clinical depth and hospital-ready evidence, in one review of your model.',
   items: [
     { n: '01', title: 'Clinical Failure-Mode Intel', body: 'A growing bank of real-world failure modes, edge cases and adversarial scenarios across conditions, demographics and workflows.' },
     { n: '02', title: 'Adversarial Testing & Red-Teaming', body: 'Stress-test your model with difficult, realistic and deliberately challenging clinical inputs (e.g. negation, attribution, conflict, missing context).' },
@@ -30,9 +34,9 @@ export const whatWeDo = {
 
 export const example = {
   sectionTitle: 'What an assessment looks like',
-  sectionSubtitle: 'A synthetic example. Hover over the numbers and bars for detail.',
-  meta: 'Independent clinical AI review · Illustrative example',
-  eyebrow: 'Example assessment across clinical AI verticals',
+  sectionSubtitle: 'A synthetic example. Hover over the numbers and bars for detail, then scroll for the full report.',
+  meta: 'synthetic data · cross-vertical · illustrative',
+  eyebrow: 'The report, in action',
   title: 'One clinical AI output can look right.',
   titleAccent: 'The evidence can tell a different story.',
   lede:
