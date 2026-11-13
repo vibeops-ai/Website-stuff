@@ -20,7 +20,7 @@ export const hero = {
 }
 
 export const whatWeDo = {
-  eyebrow: 'What we do',
+  eyebrow: 'How We Evaluate',
   title: 'A comprehensive assurance partner for clinical AI.',
   tags: ['Independent testing', 'Clinical depth', 'Hospital-ready evidence'],
   lede: 'Independent testing, clinical depth and hospital-ready evidence, in one review of your model.',
@@ -63,7 +63,7 @@ export const example = {
       { label: 'Omitted information', value: 5, color: 'bg-sand', detail: 'A relevant finding or qualifier dropped from the output.' },
       { label: 'Negation / uncertainty', value: 5, color: 'bg-clay', detail: 'Denied or uncertain statements returned as definite.' },
     ],
-    note: 'Counts are synthetic and illustrative. One output may contain more than one issue; these category counts should not be summed to infer the number of defective outputs.',
+    note: 'One output may contain more than one issue; these category counts should not be summed to infer the number of defective outputs.',
   },
 }
 
